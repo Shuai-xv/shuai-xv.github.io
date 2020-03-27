@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://shuai-xv.github.io</id>
     <title>shuai</title>
-    <updated>2020-03-26T09:58:57.919Z</updated>
+    <updated>2020-03-27T12:02:32.780Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://shuai-xv.github.io"/>
     <link rel="self" href="https://shuai-xv.github.io/atom.xml"/>
@@ -10,6 +10,72 @@
     <logo>https://shuai-xv.github.io/images/avatar.png</logo>
     <icon>https://shuai-xv.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, shuai</rights>
+    <entry>
+        <title type="html"><![CDATA[STM32创建工程]]></title>
+        <id>https://shuai-xv.github.io/post/stm32-chuang-jian-gong-cheng/</id>
+        <link href="https://shuai-xv.github.io/post/stm32-chuang-jian-gong-cheng/">
+        </link>
+        <updated>2020-03-27T06:39:03.000Z</updated>
+        <summary type="html"><![CDATA[<p>建立5个文件夹:</p>
+<ol>
+<li>USER📁: 用来存放工程文件和用户层代码，包括主函数main.c。</li>
+<li>FW1ib📁:用来存放STM32库里面的inc和src这两个文件夹，这两个文件包含了芯片上的所有驱动，这两个文件夹下的文件我们不需要修改。</li>
+<li>CMSIS📁:用来存放库,为我们自带的启动文件和一些位于CMSIS层的文件。</li>
+<li>OUTPUT📁:文件夹用来保存软件编译后输出的文件。</li>
+<li>Listing📁:用来保存编译后生成的链接文件<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>。</li>
+</ol>
+<ul>
+<li>STARTCODE从名字就可以看出我们是用它来放我们的启动代码的。</li>
+<li>USER用来存放用户自定义的应用程序。</li>
+<li>FW1ib用来存放库外设驱动文件。</li>
+<li>CMSIS用来存放M3系列单片机通用的文件。</li>
+</ul>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>最后两个文件夹可以用keil软件自动生成的文件夹Objects和Listings<br>
+添加4个组: <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+]]></summary>
+        <content type="html"><![CDATA[<p>建立5个文件夹:</p>
+<ol>
+<li>USER📁: 用来存放工程文件和用户层代码，包括主函数main.c。</li>
+<li>FW1ib📁:用来存放STM32库里面的inc和src这两个文件夹，这两个文件包含了芯片上的所有驱动，这两个文件夹下的文件我们不需要修改。</li>
+<li>CMSIS📁:用来存放库,为我们自带的启动文件和一些位于CMSIS层的文件。</li>
+<li>OUTPUT📁:文件夹用来保存软件编译后输出的文件。</li>
+<li>Listing📁:用来保存编译后生成的链接文件<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>。</li>
+</ol>
+<ul>
+<li>STARTCODE从名字就可以看出我们是用它来放我们的启动代码的。</li>
+<li>USER用来存放用户自定义的应用程序。</li>
+<li>FW1ib用来存放库外设驱动文件。</li>
+<li>CMSIS用来存放M3系列单片机通用的文件。</li>
+</ul>
+<!-- more -->
+<p>🚩</p>
+<ul>
+<li>在STARTCODE组里面添加<mark>startup_stm32f10x_hd.s</mark>启动文件。</li>
+<li>在USER组里面添加<mark>main.c</mark>和<mark>stm32f10x_it.c</mark>这两个文件。</li>
+<li>在FWlib组里面添加<mark>src文件夹里面的全部驱动文件</mark>，当然src里面的驱动文件也可以按需添加。这里将它们全部添加进去是为了后续开发的方便，况且我们可以通过配置stm32f10x_conf.h这个头文件来选择性添加，只有在stm32f10x_conf.h文件中配置的文件才会被编译。</li>
+<li>在CMSIS里面添加<mark>core_cm3.c</mark>和<mark>system_stm32f10x.c</mark>文件。注意，这些组里面添加的都是汇编文件和C文件，头文件是不需要添加的.</li>
+</ul>
+<p>到这里就差不多了,接下来🎨屏蔽掉编译器默认库的搜索路径,在<kbd>C/C++</kbd>选项卡的<strong>define</strong>里添加两个宏定义:<code>USE_STDPERIPH_DRIVER,STM32F10X_HD</code>,(添加USE_STDPERIPH_DRIVER是为了使用ST官方库，添加STM32F10X_HD宏定义是因为我们用的芯片是大容量的,芯片是小或中容量的时候宏要换成<code>STM32F10X_LD</code>或者<code>STM32F10X_MD</code>).</p>
+<!-- more -->
+<p>📑在<code>Include Paths</code>栏添加库文件的搜索路径,这样就可以屏蔽掉默认的搜索路径,如果没有添加这些路径，Kei1编译器找不到ST官方库的头文件就会从它的默认标准库搜索.添加的分别是USER,CMSIS,FELib里面的INC和SRC.</p>
+<!-- more -->
+<p>之后即可成功编译</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>最后两个文件夹可以用keil软件自动生成的文件夹Objects和Listings<br>
+添加4个组: <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://shuai-xv.github.io/post/hello-gridea/</id>

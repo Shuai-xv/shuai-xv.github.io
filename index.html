@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>shuai</title>
-<link rel="shortcut icon" href="https://shuai-xv.github.io/favicon.ico?v=1585216736080">
+<link rel="shortcut icon" href="https://shuai-xv.github.io/favicon.ico?v=1585310544985">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://shuai-xv.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="shuai - Atom Feed" href="https://shuai-xv.github.io/atom.xml">
@@ -27,7 +27,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://shuai-xv.github.io">
-  <img class="avatar" src="https://shuai-xv.github.io/images/avatar.png?v=1585216736080" alt="">
+  <img class="avatar" src="https://shuai-xv.github.io/images/avatar.png?v=1585310544985" alt="">
   </a>
   <h1 class="site-title">
     shuai
@@ -81,6 +81,47 @@
 
     
         <div class="post-container">
+  
+    <article class="post">
+      <a href="https://shuai-xv.github.io/post/stm32-chuang-jian-gong-cheng/">
+        <h2 class="post-title">STM32创建工程</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2020-03-27
+        </span>
+        <span>
+          3 min read
+        </span>
+        
+      </div>
+      
+      <div class="post-abstract">
+        <p>建立5个文件夹:</p>
+<ol>
+<li>USER📁: 用来存放工程文件和用户层代码，包括主函数main.c。</li>
+<li>FW1ib📁:用来存放STM32库里面的inc和src这两个文件夹，这两个文件包含了芯片上的所有驱动，这两个文件夹下的文件我们不需要修改。</li>
+<li>CMSIS📁:用来存放库,为我们自带的启动文件和一些位于CMSIS层的文件。</li>
+<li>OUTPUT📁:文件夹用来保存软件编译后输出的文件。</li>
+<li>Listing📁:用来保存编译后生成的链接文件<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>。</li>
+</ol>
+<ul>
+<li>STARTCODE从名字就可以看出我们是用它来放我们的启动代码的。</li>
+<li>USER用来存放用户自定义的应用程序。</li>
+<li>FW1ib用来存放库外设驱动文件。</li>
+<li>CMSIS用来存放M3系列单片机通用的文件。</li>
+</ul>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>最后两个文件夹可以用keil软件自动生成的文件夹Objects和Listings<br>
+添加4个组: <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+      </div>
+    </article>
   
     <article class="post">
       <a href="https://shuai-xv.github.io/post/hello-gridea/">

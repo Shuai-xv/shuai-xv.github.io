@@ -2,11 +2,11 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hello Gridea | shuai</title>
+<title>STM32创建工程 | shuai</title>
 <link rel="shortcut icon" href="https://shuai-xv.github.io/favicon.ico?v=1585310544985">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://shuai-xv.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Hello Gridea | shuai - Atom Feed" href="https://shuai-xv.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="STM32创建工程 | shuai - Atom Feed" href="https://shuai-xv.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
@@ -20,15 +20,12 @@
 </script>
 
 
-    <meta name="description" content="👏  欢迎使用 Gridea ！
-✍️  Gridea 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...
+    <meta name="description" content="建立5个文件夹:
 
-Github
-Gridea 主页
-示例网站
-特性👇
-📝  你可以使用最酷的 Markdo..." />
-    <meta name="keywords" content="Gridea" />
+USER📁: 用来存放工程文件和用户层代码，包括主函数main.c。
+FW1ib📁:用来存放STM32库里面的inc和src这两个文件夹，这两个文件包含了芯片上的所有驱动，这两个文件夹下的文件我们不需要修改。
+CMS..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -92,63 +89,73 @@ Gridea 主页
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Hello Gridea
+              STM32创建工程
             </h2>
             <div class="post-info">
               <span>
-                2018-12-12
+                2020-03-27
               </span>
               <span>
-                2 min read
+                3 min read
               </span>
-              
-                <a href="https://shuai-xv.github.io/tag/MDSXwTtdu/" class="post-tag">
-                  # Gridea
-                </a>
               
             </div>
             
-              <img class="post-feature-image" src="https://shuai-xv.github.io/post-images/hello-gridea.png" alt="">
-            
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+                <p>建立5个文件夹:</p>
+<ol>
+<li>USER📁: 用来存放工程文件和用户层代码，包括主函数main.c。</li>
+<li>FW1ib📁:用来存放STM32库里面的inc和src这两个文件夹，这两个文件包含了芯片上的所有驱动，这两个文件夹下的文件我们不需要修改。</li>
+<li>CMSIS📁:用来存放库,为我们自带的启动文件和一些位于CMSIS层的文件。</li>
+<li>OUTPUT📁:文件夹用来保存软件编译后输出的文件。</li>
+<li>Listing📁:用来保存编译后生成的链接文件<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>。</li>
+</ol>
+<ul>
+<li>STARTCODE从名字就可以看出我们是用它来放我们的启动代码的。</li>
+<li>USER用来存放用户自定义的应用程序。</li>
+<li>FW1ib用来存放库外设驱动文件。</li>
+<li>CMSIS用来存放M3系列单片机通用的文件。</li>
+</ul>
 <!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+<p>🚩</p>
+<ul>
+<li>在STARTCODE组里面添加<mark>startup_stm32f10x_hd.s</mark>启动文件。</li>
+<li>在USER组里面添加<mark>main.c</mark>和<mark>stm32f10x_it.c</mark>这两个文件。</li>
+<li>在FWlib组里面添加<mark>src文件夹里面的全部驱动文件</mark>，当然src里面的驱动文件也可以按需添加。这里将它们全部添加进去是为了后续开发的方便，况且我们可以通过配置stm32f10x_conf.h这个头文件来选择性添加，只有在stm32f10x_conf.h文件中配置的文件才会被编译。</li>
+<li>在CMSIS里面添加<mark>core_cm3.c</mark>和<mark>system_stm32f10x.c</mark>文件。注意，这些组里面添加的都是汇编文件和C文件，头文件是不需要添加的.</li>
+</ul>
+<p>到这里就差不多了,接下来🎨屏蔽掉编译器默认库的搜索路径,在<kbd>C/C++</kbd>选项卡的<strong>define</strong>里添加两个宏定义:<code>USE_STDPERIPH_DRIVER,STM32F10X_HD</code>,(添加USE_STDPERIPH_DRIVER是为了使用ST官方库，添加STM32F10X_HD宏定义是因为我们用的芯片是大容量的,芯片是小或中容量的时候宏要换成<code>STM32F10X_LD</code>或者<code>STM32F10X_MD</code>).</p>
+<!-- more -->
+<p>📑在<code>Include Paths</code>栏添加库文件的搜索路径,这样就可以屏蔽掉默认的搜索路径,如果没有添加这些路径，Kei1编译器找不到ST官方库的头文件就会从它的默认标准库搜索.添加的分别是USER,CMSIS,FELib里面的INC和SRC.</p>
+<!-- more -->
+<p>之后即可成功编译</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>最后两个文件夹可以用keil软件自动生成的文件夹Objects和Listings<br>
+添加4个组: <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E7%89%B9%E6%80%A7">特性👇</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://shuai-xv.github.io/post/hello-gridea/">
+              <h3 class="post-title">
+                Hello Gridea
+              </h3>
+            </a>
+          </div>
         
 
         
