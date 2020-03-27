@@ -1,0 +1,220 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>STM32创建工程 | shuai</title>
+<link rel="shortcut icon" href="https://shuai-xv.github.io/favicon.ico?v=1585310695329">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://shuai-xv.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="STM32创建工程 | shuai - Atom Feed" href="https://shuai-xv.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161915130-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-161915130-1');
+</script>
+
+
+    <meta name="description" content="建立5个文件夹:
+
+USER📁: 用来存放工程文件和用户层代码，包括主函数main.c。
+FW1ib📁:用来存放STM32库里面的inc和src这两个文件夹，这两个文件包含了芯片上的所有驱动，这两个文件夹下的文件我们不需要修改。
+CMS..." />
+    <meta name="keywords" content="Circuit" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://shuai-xv.github.io">
+  <img class="avatar" src="https://shuai-xv.github.io/images/avatar.png?v=1585310695329" alt="">
+  </a>
+  <h1 class="site-title">
+    shuai
+  </h1>
+  <p class="site-description">
+    乐莫乐兮新相知
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/Shuai-xv" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/feng-hua-yue-ye-33" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              STM32创建工程
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-27
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://shuai-xv.github.io/tag/Circuit/" class="post-tag">
+                  # Circuit
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://shuai-xv.github.io/post-images/stm32.jpg" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>建立5个文件夹:</p>
+<ol>
+<li>USER📁: 用来存放工程文件和用户层代码，包括主函数main.c。</li>
+<li>FW1ib📁:用来存放STM32库里面的inc和src这两个文件夹，这两个文件包含了芯片上的所有驱动，这两个文件夹下的文件我们不需要修改。</li>
+<li>CMSIS📁:用来存放库,为我们自带的启动文件和一些位于CMSIS层的文件。</li>
+<li>OUTPUT📁:文件夹用来保存软件编译后输出的文件。</li>
+<li>Listing📁:用来保存编译后生成的链接文件<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>。</li>
+</ol>
+<ul>
+<li>STARTCODE从名字就可以看出我们是用它来放我们的启动代码的。</li>
+<li>USER用来存放用户自定义的应用程序。</li>
+<li>FW1ib用来存放库外设驱动文件。</li>
+<li>CMSIS用来存放M3系列单片机通用的文件。</li>
+</ul>
+<!-- more -->
+<p>🚩</p>
+<ul>
+<li>在STARTCODE组里面添加<mark>startup_stm32f10x_hd.s</mark>启动文件。</li>
+<li>在USER组里面添加<mark>main.c</mark>和<mark>stm32f10x_it.c</mark>这两个文件。</li>
+<li>在FWlib组里面添加<mark>src文件夹里面的全部驱动文件</mark>，当然src里面的驱动文件也可以按需添加。这里将它们全部添加进去是为了后续开发的方便，况且我们可以通过配置stm32f10x_conf.h这个头文件来选择性添加，只有在stm32f10x_conf.h文件中配置的文件才会被编译。</li>
+<li>在CMSIS里面添加<mark>core_cm3.c</mark>和<mark>system_stm32f10x.c</mark>文件。注意，这些组里面添加的都是汇编文件和C文件，头文件是不需要添加的.</li>
+</ul>
+<p>到这里就差不多了,接下来🎨屏蔽掉编译器默认库的搜索路径,在<kbd>C/C++</kbd>选项卡的<strong>define</strong>里添加两个宏定义:<code>USE_STDPERIPH_DRIVER,STM32F10X_HD</code>,(添加USE_STDPERIPH_DRIVER是为了使用ST官方库，添加STM32F10X_HD宏定义是因为我们用的芯片是大容量的,芯片是小或中容量的时候宏要换成<code>STM32F10X_LD</code>或者<code>STM32F10X_MD</code>).</p>
+<!-- more -->
+<p>📑在<code>Include Paths</code>栏添加库文件的搜索路径,这样就可以屏蔽掉默认的搜索路径,如果没有添加这些路径，Kei1编译器找不到ST官方库的头文件就会从它的默认标准库搜索.添加的分别是USER,CMSIS,FELib里面的INC和SRC.</p>
+<!-- more -->
+<p>之后即可成功编译</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>最后两个文件夹可以用keil软件自动生成的文件夹Objects和Listings<br>
+添加4个组: <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://shuai-xv.github.io/post/hello-gridea/">
+              <h3 class="post-title">
+                Hello Gridea
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  另一个<a href="https://blog.csdn.net/zhaojun666" target="_blank">博客</a>
+  <a class="rss" href="https://shuai-xv.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
